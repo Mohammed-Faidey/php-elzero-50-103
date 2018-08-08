@@ -54,6 +54,10 @@ lecture 55
  [26] strncmp(string1,string2,length)
  [27] strrev(string)
 
+ lecture 59
+
+ [28] substr(string , start required , length optional)
+
 */
 //************************************************************************************************************
 
@@ -464,3 +468,67 @@ echo "<br>" . strncmp($v25,$v25_ ,10 ); //  1 >0 mean string 1 is larger than st
 /*
 [27] strrev(string) this function reverse string
 */
+
+//-------------------------------------------------------------------------------------------------
+// lecture 59
+/*
+
+ [28] substr(string , start required , length optional) this function take ( you can say ) 
+ acopy of string ,or make substring from original string , start parameter from which 
+ fucntion start to copy string it may 0 so function will copy all string , or >0 examplre  10 
+ so function will starty copy from index 10 to end of string , or <0 in this case function will start copy from right of string 
+ the third parameter (length) you have some cases 
+
+ 			           ---- in case of poditive start----
+
+ 1- if you start from 0 and don't write third parameter so function will copy all string 
+ 2- if you start from 0 and make length= may 15 so function will copy from 0 to 15 
+ 3- if you start from 15 and make length = may 50 so function will copy from 15 to 50 and so on ...
+ 
+                       ---- in case of negative start----
+
+  1- if you start from  -1 and don't write third parameter so function will copy characters by depending on the number , this mean if you write start = -1 function will copy only first character from right , if you write -5 function will copy only first five  characters from right
+  and so on .. ,
+
+  2- if you start from -15 and you want to write the third parameter lenght you have two case :
+
+ ( 2-1-1 )if you make length = postive like 10 but it self less than positve number of start
+ i mean (statr =-15 , lenght =10) so vlaue of lenght is less than  positve number 15 
+ function will copy from first char until -15 index then the length will determine 10 charcaters of 15 character.
+
+ (2-1-2) if you start from -15  and  make length = postive like 100 but it self bigger than positve number of start i mean (statr =-15 , lenght =100) so vlaue of lenght is biggre than  positve number 15  (100 > 15) in this case lenght will determine all string (-15) that mean it will not affect on the string while it self is (lenght) > (start ).
+
+ (2-2-1) if you make length = negative like -10 so lenght will start from right side and 
+ determine 10 chars then function will copy the 5 characters only 
+
+ (2-2-2) if you make length = negative like -100 so lenght will start from right side and 
+  determine 10 chars then function will not copy  any thing because length is minus and deletle 
+  first 100 chars (don't take them )
+
+
+ */
+  $v28="hello every body , in this course we will study php";
+  // ---- in case of poditive start----
+  //1-
+  echo "<br>" . substr($v28,0)."<br>" ;//hello every body , in this course we will study php
+  //2-
+  echo "<br>" . substr($v28,0,18)."<br>" ; // hello every body ,
+  //3-
+  echo "<br>" . substr($v28,18)."<br>" ; //in this course we will study php
+ // ---- in case of negative start----
+ //1-
+ echo "<br>" . substr($v28,-1)."<br>" ;// p
+ echo "<br>" . substr($v28,-5)."<br>" ; // y php
+ echo "<br>" . substr($v28,-33)."<br>" ; // in this course we will study php
+ //2- 
+ echo "<br>" . substr($v28,-1,5)."<br>" ;//p
+ echo "<br>" . substr($v28,-1,19)."<br>" ;// p
+ echo "<br>" . substr($v28,-15)."<br>"; // will study php
+ //2-1-1
+ echo "<br>" . substr($v28,-15,10)."<br>" ; //will stud
+ //2-1-2
+ echo "<br>" . substr($v28,-15,100)."<br>" ; //will study php
+  //2-2-1
+ echo "<br>" . substr($v28,-15,-10)."<br>" ; //will - copy 5 chars and delete the 10 chras
+ //2-2-2
+ echo "<br>" . substr($v28,-15,-100)."<br>" ; // (not copy any thing )
